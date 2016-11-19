@@ -26,6 +26,7 @@ group :test do
   gem 'mini_backtrace'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'rails-controller-testing'
 end
 
 group :production do
