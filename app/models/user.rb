@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   before_save { self.email.downcase! }
   has_secure_password
+  attr_accessor :remember_token
   validates :name, presence:true, length: { maximum: 50 }
   validates :password, presence:true, length: { minimum: 6 }
   validates :email,
@@ -16,4 +17,12 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def remember
+    self.remember_token = User.new_token
+    update_attribute(:remember_digest, User.digest(remember_token))
+  end
 end
