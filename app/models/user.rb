@@ -4,8 +4,13 @@ class User < ApplicationRecord
   before_save { self.email.downcase! }
   has_secure_password
   attr_accessor :remember_token
-  validates :name, presence:true, length: { maximum: 50 }
-  validates :password, presence:true, length: { minimum: 6 }
+  validates :name,
+  presence:true,
+  length: { maximum: 50 }
+  validates :password,
+  presence:true,
+  length: { minimum: 6 },
+  allow_blank: true
   validates :email,
   presence:true,
   length: { maximum: 255 },
