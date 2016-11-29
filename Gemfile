@@ -12,6 +12,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'sdoc', group: :doc
 gem 'puma', '~> 3.0'
 gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 group :development do
   gem 'sqlite3'
