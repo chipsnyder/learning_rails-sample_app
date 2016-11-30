@@ -19,8 +19,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      UserMailer.account_activation(@user).deliver_now
+      flash[:success] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new'
     end
