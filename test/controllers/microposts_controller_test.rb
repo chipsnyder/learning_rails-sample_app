@@ -19,7 +19,14 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
       delete micropost_path @micropost
     end
     assert_redirected_to login_url
-
   end
 
+  test "should redirect destroy for wrong micropost" do
+    log_in_as(users(:lyra))
+    micropost = microposts(:ants)
+    assert_no_difference 'Micropost.count' do
+      delete micropost_path micropost
+    end
+    assert_redirected_to root_url
+  end
 end
